@@ -1,2 +1,24 @@
 # fulva
 semantic content-based video search engine
+## Dependencies
+* npm: latest version
+* node js: version >= 0.80
+* mongodb: latest version is ok
+
+## Pre work
+* step1:git clone the repository to your local machine under $PROJECT_HOME.
+* step2:cd your $PROJECT_HOME, run npm install, then it will automatically download all the dependecy node modules
+* step3:you can install some optinal tools - debug tool:node inspector, ide tool:sublime text, mongodb management tool: robomongo
+
+## Run
+* step1:start mongodb
+* step2:cd $PROJECT_HOME, run npm app.js
+* step3:login the system, and it will generate the database-"fulva" automatically.
+
+
+## Pay attention
+* 1: maybe need "npm install async". but i am not sure 
+* 2: at 1st time, need to insert the default tree root node to the mongoDB treeNode table: show as follows
+
+    
+    
