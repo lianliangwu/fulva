@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js editor</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	</head>
+	<body>
+		<link href="css/types.css" rel="stylesheet" />
+		<link id="theme" href="css/light.css" rel="stylesheet" />
+		<!-- wulianliang: jstree -->
+		<link href="lib/jstree/themes/default/style.min.css" rel="stylesheet" />
+		<!-- wulianliang: ztree -->
+		<link rel="stylesheet" href="lib/ztree/css/demo.css" type="text/css">
+		<link rel="stylesheet" href="lib/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+		<script src="/socket.io/socket.io.js"></script>
+	    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+
+	    
+		<script src="js/libs/three.js"></script>
+		<script src="js/examples/js/libs/system.min.js"></script>
+
+		<script src="js/examples/js/controls/EditorControls.js"></script>
+		<script src="js/examples/js/controls/TransformControls.js"></script>
+		<script src="js/examples/js/loaders/BabylonLoader.js"></script>
+		<script src="js/examples/js/loaders/ColladaLoader.js"></script>
+		<script src="js/examples/js/loaders/OBJLoader.js"></script>
+		<script src="js/examples/js/loaders/PLYLoader.js"></script>
+		<script src="js/examples/js/loaders/STLLoader.js"></script>
+		<script src="js/examples/js/loaders/UTF8Loader.js"></script>
+		<script src="js/examples/js/loaders/VRMLLoader.js"></script>
+		<script src="js/examples/js/loaders/VTKLoader.js"></script>
+		<script src="js/examples/js/loaders/ctm/lzma.js"></script>
+		<script src="js/examples/js/loaders/ctm/ctm.js"></script>
+		<script src="js/examples/js/loaders/ctm/CTMLoader.js"></script>
+		<script src="js/examples/js/exporters/SceneExporter.js"></script>
+		<script src="js/examples/js/exporters/OBJExporter.js"></script>
+		<script src="js/examples/js/renderers/SoftwareRenderer.js"></script>
+		<script src="js/examples/js/renderers/SVGRenderer.js"></script>
+
+		<!-- WIP -->
+
+		<script src="js/examples/js/BufferGeometryUtils.js"></script>
+
+		<script src="js/examples/js/exporters/BufferGeometryExporter.js"></script>
+		<script src="js/examples/js/exporters/Geometry2Exporter.js"></script>
+		<script src="js/examples/js/exporters/GeometryExporter.js"></script>
+		<script src="js/examples/js/exporters/MaterialExporter.js"></script>
+		<script src="js/examples/js/exporters/ObjectExporter.js"></script>
+		<script src="js/examples/js/renderers/WebGLRenderer3.js"></script>
+
+		<script src="js/libs/signals.min.js"></script>
+		<script src="js/libs/ui.js"></script>
+		<script src="js/libs/ui.three.js"></script>
+		<script src="js/libs/ui.component.js"></script>
+		<script src="js/libs/tween.min.js"></script>
+		<script src="js/libs/d3.js" charset="utf-8"></script>
+		<script src="js/libs/dagre-d3.js"></script>
+		<script src="js/libs/underscore.js"></script>
+		<script src="js/libs/utils.js"></script>
+
+
+		<script src="js/Storage.js"></script>
+
+		<script src="js/Ajax.js"></script>
+		<script src="js/Editor.js"></script>
+		<script src="js/Asset.js"></script>		
+		<script src="js/Config.js"></script>
+		<script src="js/Loader.js"></script>
+		<script src="js/Operation.js"></script>
+		<script src="js/Engine.OperationHistory.js"></script>
+		<script src="js/Engine.UpdateState.js"></script>
+		<script src="js/Engine.UpdateStructure.js"></script>
+		<script src="js/Engine.CreateObject.js"></script>
+		<script src="js/Engine.ExecuteOperation.js"></script>
+		<script src="js/Engine.js"></script>			
+		<script src="js/RevisionControl.js"></script>
+		<script src="js/DiffColor.js"></script>
+		<script src="js/RefManager.js"></script>
+		<script src="js/Window.AssetWin.js"></script>
+		<script src="js/Window.SceneWin.js"></script>
+		<script src="js/Window.ModelWin.js"></script>
+		<script src="js/Window.TreeWin.js"></script>
+		<script src="js/Window.VersionWin.js"></script>
+		<script src="js/MergeEditor.js"></script>
+		<script src="js/Window.HistoryWin.js"></script>
+		<script src="js/Window.MergeControlWin.js"></script>
+		<script src="js/Window.MergeControlWin.ControlBtns.js"></script>		
+		<script src="js/Window.MergeControlWin.StateList.js"></script>		
+		<script src="js/Window.MergeControlWin.AttrList.js"></script>		
+		<script src="js/Window.MergeControlWin.StructureList.js"></script>							
+		<script src="js/Window.MergeWin.js"></script>
+		<script src="js/Window.ViewerWin.js"></script>
+		<script src="js/Window.GeoViewerWin.js"></script>
+		<script src="js/Window.AsynCollaWin.js"></script>
+		<script src="js/Window.SynCollaWin.js"></script>
+		<script src="js/Menubar.js"></script>
+		<script src="js/Menubar.File.js"></script>
+		<script src="js/Menubar.Collaboration.js"></script>		
+		<script src="js/Menubar.Edit.js"></script>
+		<script src="js/Menubar.Add.js"></script>
+		<script src="js/Menubar.View.js"></script>
+		<script src="js/Menubar.RVC.js"></script>
+		<script src="js/Menubar.Model.js"></script>
+		<script src="js/Menubar.Window.js"></script>		
+		<script src="js/Menubar.Help.js"></script>		
+		<script src="js/Menubar.User.js"></script>		
+		<script src="js/Menubar.Exit.js"></script>
+		<script src="js/Sidebar.js"></script>
+		<script src="js/Sidebar.Renderer.js"></script>
+		<script src="js/Sidebar.Scene.js"></script>
+		<script src="js/Sidebar.Object3D.js"></script>
+		<script src="js/Sidebar.Geometry.js"></script>
+		<script src="js/Sidebar.Animation.js"></script>
+		<script src="js/Sidebar.Geometry.BoxGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.CircleGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.CylinderGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.IcosahedronGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.PlaneGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.SphereGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.TorusGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.TorusKnotGeometry.js"></script>
+		<script src="js/Sidebar.Material.js"></script>
+		<script src="js/Toolbar.js"></script>
+		<script src="js/Viewport.js"></script>
+
+		<script src="js/workflow.js"></script>
+
+		<!-- wulianliang: add 1 line -->
+		<!-- <script src="lib/jstree/jstree.min.js"></script> -->
+		<!-- wulianliang: ztree -->
+		<!-- <script type="text/javascript" src="lib/ztree/js/jquery-1.4.4.min.js"></script> -->
+		<script type="text/javascript" src="lib/ztree/js/jquery.ztree.core-3.5.js"></script>
+		<script type="text/javascript" src="lib/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+		<script type="text/javascript" src="lib/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+
+		<script>
+
+			window.URL = window.URL || window.webkitURL;
+			window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+
+			var editor = new Editor();
+
+			var viewport = new Viewport( editor ).setId( 'viewport' );
+			document.body.appendChild( viewport.dom );
+
+			var toolbar = new Toolbar( editor ).setId( 'toolbar' )
+			document.body.appendChild( toolbar.dom );
+
+			var menubar = new Menubar( editor ).setId( 'menubar' );
+			document.body.appendChild( menubar.dom );
+
+			var sidebar = new Sidebar( editor ).setId( 'sidebar' );
+			document.body.appendChild( sidebar.dom );
+			
+			var sceneWin = new SceneWin( editor ).setId( 'sceneWin' ); 
+			document.body.appendChild( sceneWin.dom );
+			editor.sceneWin = sceneWin;
+
+			var modelWin = new ModelWin( editor ).setId( 'modelWin' ); 
+			document.body.appendChild( modelWin.dom );
+			editor.modelWin = modelWin;
+
+			// will add 1 element
+			var treeWin = new TreeWin( editor ).setId( 'treeWin' ); ; 
+			document.body.appendChild( treeWin.dom );
+			editor.treeWin = treeWin;
+
+			var assetWin = new AssetWin( editor ).setId( 'assetWin' ); 
+			document.body.appendChild( assetWin.dom );
+			editor.assetWin = assetWin;
+
+			var versionWin = new VersionWin( editor ).setId( 'versionWin' ); 
+			document.body.appendChild( versionWin.dom );
+			editor.versionWin = versionWin;
+
+			var historyWin = HistoryWin().setId( 'historyWin' ); 
+			document.body.appendChild( historyWin.dom );
+			editor.historyWin = historyWin;			
+
+			var mergeWin = new MergeWin( editor ); 
+			editor.mergeWin = mergeWin;
+
+			var synCollaWin = SynCollaWin().setId( 'synCollaWin' ); 
+			document.body.appendChild( synCollaWin.dom );
+			editor.synCollaWin = synCollaWin;	
+
+			var asynCollaWin = AsynCollaWin().setId( 'asynCollaWin' ); 
+			document.body.appendChild( asynCollaWin.dom );
+			editor.asynCollaWin = asynCollaWin;	
+
+			editor.setTheme( editor.config.getKey( 'theme' ) );
+
+			// editor.storage.init( function () {
+
+			// 	editor.storage.get( function ( state ) {
+
+			// 		if ( state !== undefined ) {
+
+			// 			var loader = new THREE.ObjectLoader();
+			// 			var scene = loader.parse( state );
+
+			// 			editor.setScene( scene );
+
+			// 		}
+
+			// 		var selected = editor.config.getKey( 'selected' );
+
+			// 		if ( selected !== undefined ) {
+
+			// 			editor.selectByUuid( selected );
+
+			// 		}
+
+			// 	} );
+
+			// 	//
+
+			// 	var timeout;
+			// 	var exporter = new THREE.ObjectExporter();
+
+			// 	var saveState = function ( scene ) {
+
+			// 		clearTimeout( timeout );
+
+			// 		timeout = setTimeout( function () {
+
+			// 			editor.storage.set( exporter.parse( editor.scene ) );
+
+			// 		}, 1000 );
+
+			// 	};
+
+			// 	var signals = editor.signals;
+
+			// 	signals.objectAdded.add( saveState );
+			// 	signals.objectChanged.add( saveState );
+			// 	signals.objectRemoved.add( saveState );
+			// 	signals.materialChanged.add( saveState );
+			// 	signals.sceneGraphChanged.add( saveState );
+
+			// } );
+
+			
+
+			document.addEventListener( 'dragover', function ( event ) {
+
+				event.preventDefault();
+				event.dataTransfer.dropEffect = 'copy';
+
+			}, false );
+
+			document.addEventListener( 'drop', function ( event ) {
+
+				event.preventDefault();
+				editor.loader.loadFile( event.dataTransfer.files[ 0 ] );
+
+			}, false );
+
+			document.addEventListener( 'keydown', function ( event ) {
+
+				switch ( event.keyCode ) {
+
+					case 8: // prevent browser back 
+						event.preventDefault();
+						break;
+					case 46: // delete
+						editor.removeObject( editor.selected );
+						editor.deselect();
+						break;
+
+				}
+
+			}, false );
+
+			var onWindowResize = function ( event ) {
+
+				editor.signals.windowResize.dispatch();
+
+			};
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			onWindowResize();
+	//		test_workflow();
+		</script>
+
+		<link rel="stylesheet" href="lib/mocha/mocha.css" />
+		<script src="lib/mocha/mocha.js"></script>
+		<script>mocha.setup('bdd');</script>
+
+		<!-- Chai -->
+		<script src="lib/chai/chai.js"></script>
+		<script>var expect = chai.expect</script>		
+
+		<script src="js/Window.TestWin.js"></script>
+		<script src="browser/test_UI.js"></script>
+		<script src="browser/test_engine.js"></script>
+		<script src="browser/test_refManager.js"></script>		
+		<style type="text/css">
+			#mocha-stats{
+				position: absolute;
+				top:35px;
+			}
+		</style>
+	</body>
+</html>

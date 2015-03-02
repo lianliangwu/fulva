@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8>
+  <title>Movie Recommender</title>
+
+  <link id="theme" href="css/dropzone.css" rel="stylesheet" />
+  <!-- ztree -->
+  <link rel="stylesheet" href="lib/ztree/css/demo.css" type="text/css">
+  <link rel="stylesheet" href="lib/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+  <link rel="stylesheet" href="css/selectric.css" type="text/css">
+
+  <script src="js/libs/jquery-1.11.1.js"></script>
+  <!-- dropzone -->
+  <script src="js/libs/dropzone.js"></script>
+  <!-- ztree -->
+  <script type="text/javascript" src="lib/ztree/js/jquery.ztree.core-3.5.js"></script>
+  <script type="text/javascript" src="lib/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+  <script type="text/javascript" src="lib/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+  <script type="text/javascript" src="js/libs/jquery.selectric.js"></script>
+
+  <script type="text/javascript" src="js/Ajax.js"></script>
+  <script type="text/javascript" src="js/libs/three.js"></script>
+
+
+</head>
+<body>
+  
+  <h1>Step 1(movie management)</h1>
+
+  <div style="float:left"> 
+    <h2>Step 1.1 movie tree</h2>
+    <div id="movieTreeDiv" style="float:left" > <ul id="treeDemo" class="ztree"> </ul> </div>
+    <div style="float:left" > <select id="selectDemo"> </select></div> 
+  </div>
+
+  <div style="float:left">
+    <h2>Step 1.2 movie upload</h2>
+    <div id="dropzone" style="width:600px">
+      <form action="/upload" class="dropzone dz-clickable" id="demo-upload">
+        <input type="hidden" id="movieStyle" value="1"/>
+        <div class="dz-default dz-message">
+          <span>Drop files here to upload</span>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <h1 style="clear:both">Step 2(optional)</h1>
+  <video controls>
+    <source src="http://ptgmedia.pearsoncmg.com/imprint_downloads/peachpit/peachpit/downloads/0321793935/media//elephants-dream-medium.mp4" type="video/mp4">
+  </video>
+  <canvas></canvas>
+  <img id="snapImage" src="">
+  <button id="snap" onclick="snap()">snap keyframe</button>
+
+  <h1 style="clear:both">Step 3(semantic graph)</h1>
+  <a href="/semantic_graph">semantic graph</a>
+
+
+
+</body>
+
+  <script src="js/vedio/movieSnap.js"></script>
+  <script src="js/vedio/movieTree.js"></script>
+  <script type="text/javascript">
+
+  $('select').selectric();
+
+  $('#demo-upload').on('sending', function(file, xhr, formData){
+    formData.append('movieStyle', $('#movieStyle')[0].value);
+  });
+
+  // load tree node info
+  Ajax.getJSON({
+    'url': 'getMovieTreeNodes'
+  }, function onEnd(err, result) {
+    if(result.treeNodes){
+      zNodes = result.treeNodes;
+      // alert(zNodes);
+      // load tree  
+      $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    }
+  });
+  </script>
+
+</html>
