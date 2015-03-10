@@ -1,0 +1,34 @@
+.ui-content {
+  padding: 0 !important;
+}
+ 
+.ui-listview {
+  margin: 0 !important;
+}
+ 
+.example-wrapper, .example-wrapper div.iscroll-scroller {
+  width: 100% !important;
+}
+
+ul.images {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  background-color: #ddd;
+}
+ul.images li {
+  display: inline;
+  width: 150px;
+  height: 150px;
+}
+
+.img {
+    position: relative;
+    float: left;
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}

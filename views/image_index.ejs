@@ -2,17 +2,60 @@
 <html>
 <head>
   <title></title>
+  <link rel="stylesheet" href="css/imageIndex.css" type="text/css">
+  <!-- Bootstrap -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+  <script src="js/libs/jquery-1.11.1.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <div >
-    Bing image search
-  </div>
-  <form action="search" method="POST">
-    search
-    <input type="text" name="searchString" />
-    <input type="submit" />
+<!-- Image search div  -->
+<div class="row">
+  <h1> (Step1 Image  </h1>
+  <form>
+    <input type="text" id="imageSearchString" />
+    <input type='button' onclick='searchImage()' value='image search'>
   </form>
+  <div>
+    <h2>
+      Image list
+    </h2>
+    <div>
+      <ul class="images" id="image-list"> </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Video search div  -->
+<div class="row">
+  <h1> (Step2 Video  </h1>
+  <!-- Youku Video search div  -->
+  <div class="span10">
+    <form>
+      <input type="text" id="youkuVideoSearchString" />
+      <input type='button' onclick='youkuVideoSearch()' value='video search'>
+    </form>
+    <h3>Youku</h3>
+    <div>
+      <ul data-role="listview"  id="movie-list" data-theme="a"></ul>
+    </div>
+  </div>           
+ 
+  <!-- Fulva Video search div  -->
+  <div class="span6">
+    <form>
+      <input type="text" id="fulvaVideoSearchString" />
+      <input type='button' onclick='fulvaVideoSearch()' value='video search'>
+    </form>
+    <h3>Fulva</h3>
+    <div>
+      <ul data-role="listview"  id="movie-list2" data-theme="a"></ul>
+    </div>
+  </div> 
+</div>
 
 </body>
+  <script src="js/image/imageIndex.js"></script>
 </html>

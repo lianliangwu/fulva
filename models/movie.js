@@ -5,6 +5,8 @@ var MovieSchema = new mongoose.Schema({
   uuid: String,
   path: String,
   name: String,
+  description: String,
+  tag: String,
 });
 
 MovieSchema.statics.findByUuid = function(uuid, callback) {

@@ -111,8 +111,9 @@ app.get('/semantic_graph', function (req, res) {res.render('semantic_graph');});
 
 // image
 app.get('/image', function (req, res) {res.render('image_index');});
-app.post('/search', imageControl.search);
-
+app.get('/searchImage', imageControl.searchImage);
+app.post('/searchByText', imageControl.searchByText);
+// app.post('/searchVideo', imageControl.searchVideo);
 
 // synchronus operation
 io.on('connection', function(socket){
