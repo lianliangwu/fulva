@@ -40,6 +40,7 @@ function youkuVideoSearch(){
         dataType: "json",
         async: true,
         success: function (result) { 
+            $('#movie-list').empty();
             ajax.parseJSONP(result);
         },
         error: function (request, error) {
@@ -60,6 +61,7 @@ function fulvaVideoSearch(){
         dataType: "json",
         async: true,
         success: function (result) { 
+            $('#movie-list2').empty();
             ajax.parseFulvaVideoJSONP(result);
         },
         error: function (request, error) {
